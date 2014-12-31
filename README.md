@@ -1,4 +1,4 @@
 PDNPlugin
 =========
 
-Paint.NET Effects for Spade
+This is a Spade plugin that (will) contain all of the Paint.NET effects, ported straight from its C#.
