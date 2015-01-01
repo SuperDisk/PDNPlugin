@@ -1,0 +1,11 @@
+main : superdisk.pdn.pdnplugin.PDNPlugin
+
+name : PDNPlugin
+authors : SuperDisk
+
+version : 0.1
+updated : 28-11-2014
+
+min-spade-version : 0.15-Dev
+
+description : Plugin containing ports of the Paint.NET 3 effects.
