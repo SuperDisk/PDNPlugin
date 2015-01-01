@@ -13,12 +13,11 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 
-import superdisk.pdn.miscellany.SpinSlider;
 import superdisk.pdn.pdnplugin.changes.BulgeChange;
 
-public class BulgeEffect extends Effect
+public class BulgeEffect //extends Effect
 {
-	//TODO: make this class work. I HATE GUI!
+	/*//TODO: make this class work. I HATE GUI!
 	private final SpinSlider xSS = new SpinSlider();
 	private final SpinSlider ySS = new SpinSlider();
 	private final SpinSlider amountSS = new SpinSlider();
@@ -36,10 +35,6 @@ public class BulgeEffect extends Effect
 		final JSlider xSlider = xSS.getSlider();
 		final JSlider ySlider = ySS.getSlider();
 		final JSlider amountSlider = amountSS.getSlider();
-		
-		/*final JSpinner xSpinner = xSS.getSpinner();
-		final JSpinner ySpinner = ySS.getSpinner();
-		final JSpinner amountSpinner = amountSS.getSpinner();*/
 		
 		xSlider.setMaximum(1000);
 		xSlider.setMinimum(-1000);
@@ -88,5 +83,5 @@ public class BulgeEffect extends Effect
 		});
 		
 		dialog.display();
-	}
+	}*/
 }

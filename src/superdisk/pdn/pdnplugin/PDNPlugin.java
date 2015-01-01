@@ -21,6 +21,7 @@
 package superdisk.pdn.pdnplugin;
 
 import superdisk.pdn.pdnplugin.changes.BulgeChange;
+import superdisk.pdn.pdnplugin.changes.EmbossChange;
 import superdisk.pdn.pdnplugin.effects.BulgeEffect;
 import heroesgrave.spade.editing.SimpleEffect;
 import heroesgrave.spade.plugin.Plugin;
@@ -87,6 +88,7 @@ public class PDNPlugin extends Plugin
 		registrar.registerImporter(new ImporterSPD());
 		registrar.registerImporter(new ImporterORA());*/
 		
-		registrar.registerEffect(new BulgeEffect("Bulge"), null);
+		//registrar.registerEffect(new BulgeEffect("Bulge"), null);
+		//registrar.registerEffect(new SimpleEffect(PDNPlugin.class, "Emboss", EmbossChange.instance), null);
 	}
 }

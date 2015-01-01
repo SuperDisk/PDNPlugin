@@ -89,7 +89,7 @@ public class ColorBgra
 		return ((0.114 * (double)b) + (0.587 * (double)g) + (0.299 * (double)r)) / 255.0;
 	}
 	
-	public char GetIntensitychar()
+	public char GetIntensityByte()
     {
         return (char)((7471 * b + 38470 * g + 19595 * r) >> 16);
     }
