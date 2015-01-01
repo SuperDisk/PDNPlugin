@@ -7,3 +7,4 @@ What's done
 ===========
 * Bulge
 * Emboss
+* Pixelate
