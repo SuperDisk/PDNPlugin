@@ -51,8 +51,8 @@ public class BulgeChange extends PDNChange
 		hw = hw + (float)xOff * hw;
 
 		for (int y = rect.y; y <= rect.y+rect.height-1; y++) {
-			int dstPtr = dst.arrayIndex(rect.x, y); //dst.GetPointAddress (rect.Left, y);
-			int srcPtr = src.arrayIndex(rect.x, y); //src.GetPointAddress (rect.Left, y);
+			int dstPtr = dst.getIndex(rect.x, y); //dst.GetPointAddress (rect.Left, y);
+			int srcPtr = src.getIndex(rect.x, y); //src.GetPointAddress (rect.Left, y);
 			
 			float v = y - hh;
 

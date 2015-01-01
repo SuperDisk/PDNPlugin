@@ -51,9 +51,9 @@ public class Utility
 			sbottom = stop + 1;
 
 		int[] srcBuffer = src.borrowBuffer();
-		int cul = src.arrayIndex(sleft, stop);
+		int cul = src.getIndex(sleft, stop);
 		int cur = cul + (sright - sleft);
-		int cll = src.arrayIndex(sleft, sbottom);
+		int cll = src.getIndex(sleft, sbottom);
 		int clr = cll + (sright - sleft);
 		
 		/*ColorBgra* cul = src.GetPointAddress (sleft, stop);

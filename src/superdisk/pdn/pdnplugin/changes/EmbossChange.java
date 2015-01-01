@@ -26,6 +26,7 @@ public class EmbossChange extends PDNChange
 	{
 		double[][] weights = getWeights();
 		int[] dstBuffer = dst.borrowBuffer();
+		boolean[] mask = src.borrowMask();
 		
 		int srcWidth = src.width;
 		int srcHeight = src.height;
@@ -41,41 +42,46 @@ public class EmbossChange extends PDNChange
 				fyEnd = 2;
 
 			// loop through each point in the line 
-			int dstPtr = dst.arrayIndex(rect.x, y);
+			int dstPtr = dst.getIndex(rect.x, y);
 			//ColorBgra* dstPtr = dst.GetPointAddress (rect.Left, y);
 
 			for (int x = rect.x; x <= rect.x+rect.width-1; ++x) {
-				int fxStart = 0;
-				int fxEnd = 3;
-
-				if (x == 0)
-					fxStart = 1;
-
-				if (x == srcWidth - 1)
-					fxEnd = 2;
-
-				// loop through each weight
-				double sum = 0.0;
-
-				for (int fy = fyStart; fy < fyEnd; ++fy) {
-					for (int fx = fxStart; fx < fxEnd; ++fx) {
-						double weight = weights[fy][fx];
-						ColorBgra c = ColorBgra.fromInt(src.getPixel(x - 1 + fx, y - 1 + fy));
-						double intensity = (double)c.GetIntensityByte();
-						sum += weight * intensity;
-					}
+				if (mask == null || mask[dstPtr])
+				{
+					int fxStart = 0;
+					
+    				int fxEnd = 3;
+    
+    				if (x == 0)
+    					fxStart = 1;
+    
+    				if (x == srcWidth - 1)
+    					fxEnd = 2;
+    
+    				// loop through each weight
+    				double sum = 0.0;
+    
+    				for (int fy = fyStart; fy < fyEnd; ++fy) {
+    					for (int fx = fxStart; fx < fxEnd; ++fx) {
+    						double weight = weights[fy][fx];
+    						ColorBgra c = ColorBgra.fromInt(src.getPixel(x - 1 + fx, y - 1 + fy));
+    						double intensity = (double)c.GetIntensityByte();
+    						sum += weight * intensity;
+    					}
+    				}
+    
+    				int iSum = (int)sum;
+    				iSum += 128;
+    
+    				if (iSum > 255)
+    					iSum = 255;
+    
+    				if (iSum < 0)
+    					iSum = 0;
+    
+    				dstBuffer[dstPtr] = ColorBgra.fromBgra ((char)iSum, (char)iSum, (char)iSum, (char)255).getBgra();
 				}
-
-				int iSum = (int)sum;
-				iSum += 128;
-
-				if (iSum > 255)
-					iSum = 255;
-
-				if (iSum < 0)
-					iSum = 0;
-
-				dstBuffer[dstPtr] = ColorBgra.fromBgra ((char)iSum, (char)iSum, (char)iSum, (char)255).getBgra();
+				
 				++dstPtr;
 			}
 		}
