@@ -7,7 +7,7 @@ import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 
 import superdisk.pdn.ArgumentOutOfRangeException;
-import superdisk.pdn.pdnplugin.ColorBgra;
+import superdisk.pdn.structs.ColorBgra;
 
 //TODO: Implement offset. WTF pinta team!?
 public class TwistChange extends PDNChange

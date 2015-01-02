@@ -6,8 +6,8 @@ import heroesgrave.spade.image.change.SingleChange;
 import java.awt.Rectangle;
 
 import superdisk.pdn.ArgumentOutOfRangeException;
-import superdisk.pdn.pdnplugin.ColorBgra;
 import superdisk.pdn.pdnplugin.Utility;
+import superdisk.pdn.structs.ColorBgra;
 
 public class JuliaFractalChange extends PDNChange
 {

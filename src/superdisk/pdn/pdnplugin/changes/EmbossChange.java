@@ -6,7 +6,7 @@ import heroesgrave.spade.image.change.SingleChange;
 
 import java.awt.Rectangle;
 
-import superdisk.pdn.pdnplugin.ColorBgra;
+import superdisk.pdn.structs.ColorBgra;
 
 public class EmbossChange extends PDNChange
 {

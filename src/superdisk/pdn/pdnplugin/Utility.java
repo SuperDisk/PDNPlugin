@@ -1,9 +1,15 @@
 package superdisk.pdn.pdnplugin;
 
+import java.util.Random;
+
+import superdisk.pdn.structs.ColorBgra;
+import superdisk.pdn.structs.PointD;
 import heroesgrave.spade.image.RawImage;
 
 public class Utility
 {	
+	public static final Random rand = new Random();
+	
 	public static int GetBilinearSampleClamped(RawImage src, float x, float y)
 	{
     	float u = x;
@@ -98,5 +104,19 @@ public class Utility
 		} else {
 			return (char)x;
 		}
+	}
+	
+	public static double lerp (double from, double to, double frac)
+	{
+		return (from + frac * (to - from));
+	}
+
+	public static PointD lerp (PointD from, PointD to, float frac)
+	{
+		return new PointD (lerp (from.x, to.x, frac), lerp (from.y, to.y, frac));
+	}
+	
+	public static int randInt(int min, int max) {
+	    return rand.nextInt((max - min) + 1) + min;
 	}
 }

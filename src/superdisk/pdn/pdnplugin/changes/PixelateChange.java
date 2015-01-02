@@ -8,7 +8,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-import superdisk.pdn.pdnplugin.ColorBgra;
+import superdisk.pdn.structs.ColorBgra;
 
 public class PixelateChange extends PDNChange
 {

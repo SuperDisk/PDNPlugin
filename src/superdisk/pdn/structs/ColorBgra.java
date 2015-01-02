@@ -1,4 +1,8 @@
-package superdisk.pdn.pdnplugin;
+package superdisk.pdn.structs;
+
+import java.math.BigInteger;
+
+import superdisk.pdn.ArgumentOutOfRangeException;
 
 public class ColorBgra
 {
@@ -19,6 +23,16 @@ public class ColorBgra
 	public String toHexString()
 	{
 		return Integer.toHexString(bgraToInt(b, g, r, a));
+	}
+	
+	public static ColorBgra fromBgra(int b, int g, int r, int a)
+	{
+		ColorBgra color = new ColorBgra();
+		color.setB((char)b);
+		color.setG((char)g);
+		color.setR((char)r);
+		color.setA((char)a);
+		return color;
 	}
 	
 	public static ColorBgra fromBgra(char b, char g, char r, char a)
@@ -147,6 +161,54 @@ public class ColorBgra
 		return color;
 	}
 	
+	//What crap. The original function used ulong, which scared me.
+	//Changing them to long works just fine.
+	//WWHHAGHHAGHSAHDGLIH
+	public static ColorBgra Blend(ColorBgra[] colors, int count)
+    {
+		if (count < 0)
+        {
+            throw new ArgumentOutOfRangeException("count must be 0 or greater");
+        }
+
+        if (count == 0)
+        {
+            return ColorBgra.Transparent;
+        }
+
+        long aSum = 0;
+
+        for (int i = 0; i < count; ++i)
+        {
+            aSum += (long)colors[i].getA();
+        }
+
+        char b = 0;
+        char g = 0;
+        char r = 0;
+        char a = (char)(aSum / (long)count);
+
+        if (aSum != 0)
+        {
+            long bSum = 0;
+            long gSum = 0;
+            long rSum = 0;
+
+            for (int i = 0; i < count; ++i)
+            {
+                bSum += (long)(colors[i].getA() * colors[i].getB());
+                gSum += (long)(colors[i].getA() * colors[i].getG());
+                rSum += (long)(colors[i].getA() * colors[i].getR());
+            }
+
+            b = (char)(bSum / aSum);
+            g = (char)(gSum / aSum);
+            r = (char)(rSum / aSum);
+        }
+
+        return ColorBgra.fromBgra(b, g, r, a);
+    }
+	
 	public static ColorBgra BlendColors4W16IP(ColorBgra c1, long w1, ColorBgra c2, long w2, ColorBgra c3, long w3, ColorBgra c4, long w4)
     {
         final long ww = 32768;
@@ -172,4 +234,15 @@ public class ColorBgra
 
         return ColorBgra.fromBgra((char)b, (char)g, (char)r, (char)a);
     }
+	
+	public static final ColorBgra Transparent = ColorBgra.fromBgra (255, 255, 255, 0);
+
+	public static final ColorBgra Black = ColorBgra.fromBgra (0, 0, 0, 255);
+	public static final ColorBgra Blue = ColorBgra.fromBgra (255, 0, 0, 255);
+	public static final ColorBgra Cyan = ColorBgra.fromBgra (255, 255, 0, 255);
+	public static final ColorBgra Green =  ColorBgra.fromBgra (0, 128, 0, 255);
+	public static final ColorBgra Magenta = ColorBgra.fromBgra (255, 0, 255, 255);
+	public static final ColorBgra Red = ColorBgra.fromBgra (0, 0, 255, 255);
+	public static final ColorBgra White = ColorBgra.fromBgra (255, 255, 255, 255);
+	public static final ColorBgra Yellow = ColorBgra.fromBgra (0, 255, 255, 255);
 }
