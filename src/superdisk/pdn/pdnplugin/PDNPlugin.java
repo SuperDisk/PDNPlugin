@@ -24,7 +24,7 @@ import superdisk.pdn.pdnplugin.changes.BulgeChange;
 import superdisk.pdn.pdnplugin.changes.EmbossChange;
 import superdisk.pdn.pdnplugin.changes.PixelateChange;
 import superdisk.pdn.pdnplugin.changes.TileChange;
-import superdisk.pdn.pdnplugin.effects.BulgeEffect;
+import superdisk.pdn.pdnplugin.changes.TwistChange;
 import heroesgrave.spade.editing.SimpleEffect;
 import heroesgrave.spade.plugin.Plugin;
 import heroesgrave.spade.plugin.Registrar;
@@ -45,8 +45,6 @@ public class PDNPlugin extends Plugin
 	@Override
 	public void register(Registrar registrar)
 	{
-		
-		
 		/*registrar.registerTool(new Line("Line"), 'L');
 		
 		registrar.registerOperation(new ResizeImageOp("Resize Image"), 'R');
@@ -94,5 +92,7 @@ public class PDNPlugin extends Plugin
 		registrar.registerEffect(new SimpleEffect(PDNPlugin.class, "Emboss", EmbossChange.instance), null);
 		registrar.registerEffect(new SimpleEffect(PDNPlugin.class, "Pixelate", PixelateChange.instance), null);
 		registrar.registerEffect(new SimpleEffect(PDNPlugin.class, "Tile Reflection", TileChange.instance), null);
+		registrar.registerEffect(new SimpleEffect(PDNPlugin.class, "Bulge", BulgeChange.instance), null);
+		registrar.registerEffect(new SimpleEffect(PDNPlugin.class, "Twist", TwistChange.instance), null);
 	}
 }

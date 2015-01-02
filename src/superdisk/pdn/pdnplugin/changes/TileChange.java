@@ -17,7 +17,7 @@ public class TileChange extends PDNChange
 {
 	private double rotation;
 	private int tile_size;
-	private int intensity;
+	private int intensity; //TODO: Make this not stupid.
 	
 	public static final TileChange instance = new TileChange(30, 40, 8);
 	
