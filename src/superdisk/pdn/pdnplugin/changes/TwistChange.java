@@ -9,6 +9,7 @@ import java.awt.geom.Point2D;
 import superdisk.pdn.ArgumentOutOfRangeException;
 import superdisk.pdn.pdnplugin.ColorBgra;
 
+//TODO: Implement offset. WTF pinta team!?
 public class TwistChange extends PDNChange
 {
 	
@@ -33,6 +34,7 @@ public class TwistChange extends PDNChange
 	{
 		int[] dstBuffer = dst.borrowBuffer();
 		int[] srcBuffer = src.borrowBuffer();
+		boolean[] mask = src.borrowMask();
 		
 		float twist = amount;
 
@@ -63,44 +65,48 @@ public class TwistChange extends PDNChange
 			//ColorBgra* srcPtr = src.GetPointAddress (rect.Left, y);
 
 			for (int x = rect.x; x <= rect.x+rect.width-1; x++) {
-				float i = x - hw;
+				if (mask == null || mask[dstPtr])
+				{
+					float i = x - hw;
+					
 
-				if (i * i + j * j > (maxrad + 1) * (maxrad + 1)) {
-					dstBuffer[dstPtr] = srcBuffer[srcPtr];
-					//*dstPtr = *srcPtr;
-				} else {
-					int b = 0;
-					int g = 0;
-					int r = 0;
-					int a = 0;
-
-					for (int p = 0; p < aaSamples; ++p) {
-						float u = i + (float)aaPoints[p].getX();
-						float v = j + (float)aaPoints[p].getY();
-						double rad = Math.sqrt (u * u + v * v);
-						double theta = Math.atan2 (v, u);
-
-						double t = 1 - rad / maxrad;
-
-						t = (t < 0) ? 0 : (t * t * t);
-
-						theta += (t * twist) / 100;
-
-						ColorBgra sample = ColorBgra.fromInt(src.getPixel(
-							(int)(hw + (float)(rad * Math.cos (theta))),
-							(int)(hh + (float)(rad * Math.sin (theta)))));
-
-						b += sample.getB();
-						g += sample.getG();
-						r += sample.getR();
-						a += sample.getA();
-					}
-
-					dstBuffer[dstPtr] = ColorBgra.fromBgra(
-						(char)(b / aaSamples),
-						(char)(g / aaSamples),
-						(char)(r / aaSamples),
-						(char)(a / aaSamples)).getBgra();
+    				if (i * i + j * j > (maxrad + 1) * (maxrad + 1)) {
+    					dstBuffer[dstPtr] = srcBuffer[srcPtr];
+    					//*dstPtr = *srcPtr;
+    				} else {
+    					int b = 0;
+    					int g = 0;
+    					int r = 0;
+    					int a = 0;
+    
+    					for (int p = 0; p < aaSamples; ++p) {
+    						float u = i + (float)aaPoints[p].getX();
+    						float v = j + (float)aaPoints[p].getY();
+    						double rad = Math.sqrt (u * u + v * v);
+    						double theta = Math.atan2 (v, u);
+    
+    						double t = 1 - rad / maxrad;
+    
+    						t = (t < 0) ? 0 : (t * t * t);
+    
+    						theta += (t * twist) / 100;
+    
+    						ColorBgra sample = ColorBgra.fromInt(src.getPixel(
+    							(int)(hw + (float)(rad * Math.cos (theta))),
+    							(int)(hh + (float)(rad * Math.sin (theta)))));
+    
+    						b += sample.getB();
+    						g += sample.getG();
+    						r += sample.getR();
+    						a += sample.getA();
+    					}
+    
+    					dstBuffer[dstPtr] = ColorBgra.fromBgra(
+    						(char)(b / aaSamples),
+    						(char)(g / aaSamples),
+    						(char)(r / aaSamples),
+    						(char)(a / aaSamples)).getBgra();
+    				}
 				}
 
 				++dstPtr;

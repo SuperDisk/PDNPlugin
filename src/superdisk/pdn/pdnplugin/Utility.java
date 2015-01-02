@@ -66,4 +66,37 @@ public class Utility
 		//ColorBgra.BlendColors4W16IP (*cul, wul, *cur, wur, *cll, wll, *clr, wlr);
 		return c.getBgra();
 	}
+	
+	public static char clampToByte (double x)
+	{
+		if (x > 255) {
+			return 255;
+		} else if (x < 0) {
+			return 0;
+		} else {
+			return (char)x;
+		}
+	}
+
+	public static char clampToByte (float x)
+	{
+		if (x > 255) {
+			return 255;
+		} else if (x < 0) {
+			return 0;
+		} else {
+			return (char)x;
+		}
+	}
+	
+	public static char ClampToByte (int x)
+	{
+		if (x > 255) {
+			return 255;
+		} else if (x < 0) {
+			return 0;
+		} else {
+			return (char)x;
+		}
+	}
 }
