@@ -23,6 +23,7 @@ package superdisk.pdn.pdnplugin;
 import superdisk.pdn.pdnplugin.changes.BulgeChange;
 import superdisk.pdn.pdnplugin.changes.EmbossChange;
 import superdisk.pdn.pdnplugin.changes.PixelateChange;
+import superdisk.pdn.pdnplugin.changes.TileChange;
 import superdisk.pdn.pdnplugin.effects.BulgeEffect;
 import heroesgrave.spade.editing.SimpleEffect;
 import heroesgrave.spade.plugin.Plugin;
@@ -92,5 +93,6 @@ public class PDNPlugin extends Plugin
 		//registrar.registerEffect(new BulgeEffect("Bulge"), null);
 		registrar.registerEffect(new SimpleEffect(PDNPlugin.class, "Emboss", EmbossChange.instance), null);
 		registrar.registerEffect(new SimpleEffect(PDNPlugin.class, "Pixelate", PixelateChange.instance), null);
+		registrar.registerEffect(new SimpleEffect(PDNPlugin.class, "Tile Reflection", TileChange.instance), null);
 	}
 }

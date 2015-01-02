@@ -2,9 +2,9 @@ package superdisk.pdn.pdnplugin.changes;
 
 import java.awt.Rectangle;
 
+import superdisk.pdn.ArgumentOutOfRangeException;
 import superdisk.pdn.pdnplugin.Utility;
 import heroesgrave.spade.image.RawImage;
-import heroesgrave.spade.image.change.ArgumentOutOfRangeException;
 import heroesgrave.spade.image.change.SingleChange;
 
 public class BulgeChange extends PDNChange
