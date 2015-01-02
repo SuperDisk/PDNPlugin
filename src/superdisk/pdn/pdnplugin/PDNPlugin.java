@@ -29,6 +29,7 @@ import superdisk.pdn.pdnplugin.changes.MotionBlurChange;
 import superdisk.pdn.pdnplugin.changes.PixelateChange;
 import superdisk.pdn.pdnplugin.changes.TileChange;
 import superdisk.pdn.pdnplugin.changes.TwistChange;
+import superdisk.pdn.pdnplugin.changes.ZoomBlurChange;
 import heroesgrave.spade.editing.SimpleEffect;
 import heroesgrave.spade.plugin.Plugin;
 import heroesgrave.spade.plugin.Registrar;
@@ -101,5 +102,6 @@ public class PDNPlugin extends Plugin
 		registrar.registerEffect(new SimpleEffect(PDNPlugin.class, "Julia Fractal", JuliaFractalChange.instance), null);
 		registrar.registerEffect(new SimpleEffect(PDNPlugin.class, "Mandelbrot Fractal", MandelbrotFractalChange.instance), null);
 		registrar.registerEffect(new SimpleEffect(PDNPlugin.class, "Motion Blur", MotionBlurChange.instance), null);
+		registrar.registerEffect(new SimpleEffect(PDNPlugin.class, "Zoom Blur", ZoomBlurChange.instance), null);
 	}
 }
