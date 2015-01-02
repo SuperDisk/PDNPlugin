@@ -8,6 +8,10 @@ What's done
 * Bulge
 * Emboss
 * Pixelate
+* Tile Reflection
+* Twist (Sort of.)
+* Julia Fractal
+* Mandelbrot Fractal
 
 What needs to be done
 =====================

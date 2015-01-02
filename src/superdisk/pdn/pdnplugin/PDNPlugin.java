@@ -23,6 +23,7 @@ package superdisk.pdn.pdnplugin;
 import superdisk.pdn.pdnplugin.changes.BulgeChange;
 import superdisk.pdn.pdnplugin.changes.EmbossChange;
 import superdisk.pdn.pdnplugin.changes.JuliaFractalChange;
+import superdisk.pdn.pdnplugin.changes.MandelbrotFractalChange;
 import superdisk.pdn.pdnplugin.changes.PixelateChange;
 import superdisk.pdn.pdnplugin.changes.TileChange;
 import superdisk.pdn.pdnplugin.changes.TwistChange;
@@ -96,5 +97,6 @@ public class PDNPlugin extends Plugin
 		registrar.registerEffect(new SimpleEffect(PDNPlugin.class, "Bulge", BulgeChange.instance), null);
 		registrar.registerEffect(new SimpleEffect(PDNPlugin.class, "Twist", TwistChange.instance), null);
 		registrar.registerEffect(new SimpleEffect(PDNPlugin.class, "Julia Fractal", JuliaFractalChange.instance), null);
+		registrar.registerEffect(new SimpleEffect(PDNPlugin.class, "Mandelbrot Fractal", MandelbrotFractalChange.instance), null);
 	}
 }
