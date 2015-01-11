@@ -127,7 +127,9 @@ public class FrostedGlassChange extends PDNChange
 				char B = (char)(avgBlue[chosenIntensity] / intensityCount[chosenIntensity]);
 				char A = (char)(avgAlpha[chosenIntensity] / intensityCount[chosenIntensity]);
 
-				dstBuffer[dstPtr] = ColorBgra.fromBgra (B, G, R, A).getBgra();
+				if (mask == null || mask[dstPtr])
+					dstBuffer[dstPtr] = ColorBgra.fromBgra (B, G, R, A).getBgra();
+				
 				++dstPtr;
 
 				// prepare the array for the next loop iteration
