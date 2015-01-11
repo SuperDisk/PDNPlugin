@@ -84,13 +84,13 @@ public class MotionBlurChange extends PDNChange
     					PointD pt = new PointD (points[j].x + (float)x, points[j].y + (float)y);
     
     					if (pt.x >= 0 && pt.y >= 0 && pt.x <= (src_width - 1) && pt.y <= (src_height - 1)) {
-    						samples[sampleCount] = ColorBgra.fromInt(Utility.GetBilinearSampleClamped (src, (float)pt.x, (float)pt.y));
+    						samples[sampleCount] = Utility.getBilinearSampleClamped (src, (float)pt.x, (float)pt.y);
     						++sampleCount;
     					}
     				}
     
     				//*dstPtr = ColorBgra.Blend (samples, sampleCount);
-    				dstBuffer[dstPtr] = ColorBgra.Blend(samples, sampleCount).getBgra();
+    				dstBuffer[dstPtr] = ColorBgra.blend(samples, sampleCount).getBgra();
 				}
 				
 				++dstPtr;

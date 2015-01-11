@@ -6,8 +6,10 @@ import heroesgrave.spade.image.RawImage;
 import heroesgrave.spade.image.change.IImageChange;
 import heroesgrave.spade.image.change.SingleChange;
 
-public abstract class PDNChange extends SingleChange implements IImageChange
+public class PDNChange extends SingleChange implements IImageChange
 {
+	//public static final PDNChange instance = new PDNChange();
+	
 	@Override
 	public RawImage apply(RawImage image)
 	{
@@ -22,5 +24,29 @@ public abstract class PDNChange extends SingleChange implements IImageChange
 		return dst;
 	}
 	
-	public abstract void renderLine(RawImage src, RawImage dst, Rectangle rect);
+	public void renderLine(RawImage src, RawImage dst, Rectangle rect)
+	{
+		render(src.borrowBuffer(), dst.borrowBuffer(), rect.width);
+	}
+	
+	protected void render(int[] src, int[] dst, int length)
+	{
+		while (length > 0)
+		{
+			dst[length] = render(src[length]);
+			length--;
+		}
+	}
+	
+	protected int render(int color)
+	{
+		return color;
+	}
+
+	@Override
+	public SingleChange getInstance()
+	{
+		return null;
+		//return instance;
+	}
 }

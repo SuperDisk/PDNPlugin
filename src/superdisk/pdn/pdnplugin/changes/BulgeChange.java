@@ -70,7 +70,7 @@ public class BulgeChange extends PDNChange
     					float xp = u * rscale2;
     					float yp = v * rscale2;
     
-    					dstBuffer[dstPtr] = Utility.GetBilinearSampleClamped (src, xp + hw, yp + hh);
+    					dstBuffer[dstPtr] = Utility.getBilinearSampleClamped (src, xp + hw, yp + hh).getBgra();
     				} else {
     					dstBuffer[dstPtr] = srcBuffer[srcPtr];
     				}

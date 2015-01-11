@@ -7,6 +7,11 @@ public class PointD
 
 	public static PointD Empty;
 
+	public PointD()
+	{
+		
+	}
+	
 	public PointD (double x, double y)
 	{
 		this.x = x;

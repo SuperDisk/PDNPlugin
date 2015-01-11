@@ -2,7 +2,9 @@ package superdisk.pdn.pdnplugin;
 
 import java.util.Random;
 
+import superdisk.pdn.ArgumentOutOfRangeException;
 import superdisk.pdn.structs.ColorBgra;
+import superdisk.pdn.structs.ColorBgraPointer;
 import superdisk.pdn.structs.PointD;
 import heroesgrave.spade.image.RawImage;
 
@@ -10,7 +12,7 @@ public class Utility
 {	
 	public static final Random rand = new Random();
 	
-	public static int GetBilinearSampleClamped(RawImage src, float x, float y)
+	public static ColorBgra getBilinearSampleClamped(RawImage src, float x, float y)
 	{
     	float u = x;
     	float v = y;
@@ -62,15 +64,79 @@ public class Utility
 		int cll = src.getIndex(sleft, sbottom);
 		int clr = cll + (sright - sleft);
 		
-		/*ColorBgra* cul = src.GetPointAddress (sleft, stop);
+		/*ColorBgra* cul = src.getPixelAddress (sleft, stop);
 		ColorBgra* cur = cul + (sright - sleft);
-		ColorBgra* cll = src.GetPointAddress (sleft, sbottom);
+		ColorBgra* cll = src.getPixelAddress (sleft, sbottom);
 		ColorBgra* clr = cll + (sright - sleft);*/
 
 		//System.out.println(ColorBgra.fromInt(srcBuffer[cul]).getBgra());
 		ColorBgra c = ColorBgra.BlendColors4W16IP(ColorBgra.fromInt(srcBuffer[cul]), wul, ColorBgra.fromInt(srcBuffer[cur]), wur, ColorBgra.fromInt(srcBuffer[cll]), wll, ColorBgra.fromInt(srcBuffer[clr]), wlr);
 		//ColorBgra.BlendColors4W16IP (*cul, wul, *cur, wur, *cll, wll, *clr, wlr);
-		return c.getBgra();
+		return c;
+	}
+	
+	public static ColorBgra getBilinearSampleWrapped (RawImage src, float x, float y)
+	{
+		return getBilinearSampleWrapped (src, new ColorBgraPointer(src, 0, 0), src.width, src.height, x, y);
+	}
+
+	public static ColorBgra getBilinearSampleWrapped (RawImage src, ColorBgra srcDataPtr, int srcWidth, int srcHeight, float x, float y)
+	{
+		if (!Utility.isNumber (x) || !Utility.isNumber (y))
+			return ColorBgra.Transparent;
+
+		float u = x;
+		float v = y;
+
+		int iu = (int)Math.floor (u);
+		int sxfrac = (int)(256 * (u - (float)iu)); //
+		int sxfracinv = 256 - sxfrac;//
+
+		int iv = (int)Math.floor (v);
+		int syfrac = (int)(256 * (v - (float)iv));//
+		int syfracinv = 256 - syfrac;//
+
+		int wul = (int)(sxfracinv * syfracinv);///
+		int wur = (int)(sxfrac * syfracinv);///
+		int wll = (int)(sxfracinv * syfrac);///
+		int wlr = (int)(sxfrac * syfrac);//
+
+		int sx = iu;
+		if (sx < 0)
+			sx = (srcWidth - 1) + ((sx + 1) % srcWidth);
+		else if (sx > (srcWidth - 1))
+			sx = sx % srcWidth;
+
+		int sy = iv;
+		if (sy < 0)
+			sy = (srcHeight - 1) + ((sy + 1) % srcHeight);
+		else if (sy > (srcHeight - 1))
+			sy = sy % srcHeight;
+
+		int sleft = sx;
+		int sright;
+
+		if (sleft == (srcWidth - 1))
+			sright = 0;
+		else
+			sright = sleft + 1;
+
+		int stop = sy;
+		int sbottom;
+
+		if (stop == (srcHeight - 1))
+			sbottom = 0;
+		else
+			sbottom = stop + 1;
+
+		ColorBgra cul = ColorBgra.fromInt(src.getPixel (sleft, stop));
+		ColorBgra cur = ColorBgra.fromInt(src.getPixel (sright, stop));
+		ColorBgra cll = ColorBgra.fromInt(src.getPixel (sleft, sbottom));
+		ColorBgra clr = ColorBgra.fromInt(src.getPixel (sright, sbottom));
+
+		ColorBgra c = ColorBgra.BlendColors4W16IP (cul, wul, cur, wur, cll, wll, clr, wlr);
+
+		return c;
 	}
 	
 	public static char clampToByte (double x)
@@ -104,6 +170,32 @@ public class Utility
 		} else {
 			return (char)x;
 		}
+	}
+	public static void getRgssOffsets (PointD[] samplesArray, int sampleCount, int quality)
+	{
+		if (sampleCount < 1)
+			throw new ArgumentOutOfRangeException ("sampleCount must be [0, int.MaxValue]");
+
+		if (sampleCount != quality * quality)
+			throw new ArgumentOutOfRangeException ("sampleCount != (quality * quality)");
+
+		if (sampleCount == 1) {
+			samplesArray[0] = new PointD (0.0, 0.0);
+		} else {
+			for (int i = 0; i < sampleCount; ++i) {
+				double y = (i + 1d) / (sampleCount + 1d);
+				double x = y * quality;
+
+				x -= (int)x;
+
+				samplesArray[i] = new PointD (x - 0.5d, y - 0.5d);
+			}
+		}
+	}
+	
+	private static boolean isNumber (float x)
+	{
+		return x >= Float.MIN_VALUE && x <= Float.MAX_VALUE;
 	}
 	
 	public static double lerp (double from, double to, double frac)

@@ -1,7 +1,5 @@
 package superdisk.pdn.structs;
 
-import java.math.BigInteger;
-
 import superdisk.pdn.ArgumentOutOfRangeException;
 
 public class ColorBgra
@@ -164,7 +162,7 @@ public class ColorBgra
 	//What crap. The original function used ulong, which scared me.
 	//Changing them to long works just fine.
 	//WWHHAGHHAGHSAHDGLIH
-	public static ColorBgra Blend(ColorBgra[] colors, int count)
+	public static ColorBgra blend(ColorBgra[] colors, int count)
     {
 		if (count < 0)
         {
