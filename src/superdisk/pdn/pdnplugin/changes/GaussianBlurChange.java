@@ -6,7 +6,7 @@ import heroesgrave.spade.image.change.SingleChange;
 import java.awt.Rectangle;
 import java.nio.ByteBuffer;
 
-import superdisk.pdn.ArgumentOutOfRangeException;
+import superdisk.pdn.pdnplugin.ArgumentOutOfRangeException;
 
 public class GaussianBlurChange extends PDNChange
 {

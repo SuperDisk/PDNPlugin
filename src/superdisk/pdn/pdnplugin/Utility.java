@@ -2,7 +2,6 @@ package superdisk.pdn.pdnplugin;
 
 import java.util.Random;
 
-import superdisk.pdn.ArgumentOutOfRangeException;
 import superdisk.pdn.structs.ColorBgra;
 import superdisk.pdn.structs.ColorBgraPointer;
 import superdisk.pdn.structs.PointD;

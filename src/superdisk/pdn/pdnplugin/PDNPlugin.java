@@ -22,6 +22,7 @@ package superdisk.pdn.pdnplugin;
 
 import superdisk.pdn.pdnplugin.changes.BulgeChange;
 import superdisk.pdn.pdnplugin.changes.EmbossChange;
+import superdisk.pdn.pdnplugin.changes.FrostedGlassChange;
 import superdisk.pdn.pdnplugin.changes.GaussianBlurChange;
 import superdisk.pdn.pdnplugin.changes.JuliaFractalChange;
 import superdisk.pdn.pdnplugin.changes.MandelbrotFractalChange;
@@ -106,5 +107,6 @@ public class PDNPlugin extends Plugin
 		registrar.registerEffect(new SimpleEffect(PDNPlugin.class, "Motion Blur", MotionBlurChange.instance), null);
 		registrar.registerEffect(new SimpleEffect(PDNPlugin.class, "Zoom Blur", ZoomBlurChange.instance), null);
 		registrar.registerEffect(new SimpleEffect(PDNPlugin.class, "Radial Blur", RadialBlurChange.instance), null);
+		registrar.registerEffect(new SimpleEffect(PDNPlugin.class, "Frosted Glass", FrostedGlassChange.instance), null);
 	}
 }

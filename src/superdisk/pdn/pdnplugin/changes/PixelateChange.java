@@ -1,13 +1,13 @@
 package superdisk.pdn.pdnplugin.changes;
 
 import heroesgrave.spade.image.RawImage;
-import superdisk.pdn.ArgumentOutOfRangeException;
 import heroesgrave.spade.image.change.SingleChange;
 
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+import superdisk.pdn.pdnplugin.ArgumentOutOfRangeException;
 import superdisk.pdn.structs.ColorBgra;
 
 public class PixelateChange extends PDNChange

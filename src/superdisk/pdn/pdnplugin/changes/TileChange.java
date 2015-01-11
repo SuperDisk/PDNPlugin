@@ -6,7 +6,7 @@ import heroesgrave.spade.image.change.SingleChange;
 import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 
-import superdisk.pdn.ArgumentOutOfRangeException;
+import superdisk.pdn.pdnplugin.ArgumentOutOfRangeException;
 import superdisk.pdn.structs.ColorBgra;
 
 

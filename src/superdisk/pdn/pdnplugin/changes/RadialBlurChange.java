@@ -4,7 +4,7 @@ import heroesgrave.spade.image.RawImage;
 
 import java.awt.Rectangle;
 
-import superdisk.pdn.ArgumentOutOfRangeException;
+import superdisk.pdn.pdnplugin.ArgumentOutOfRangeException;
 import superdisk.pdn.pdnplugin.Utility;
 import superdisk.pdn.structs.ColorBgra;
 import superdisk.pdn.structs.Point;

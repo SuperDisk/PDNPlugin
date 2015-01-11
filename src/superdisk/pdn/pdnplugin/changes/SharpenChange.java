@@ -5,7 +5,7 @@ import heroesgrave.spade.image.change.SingleChange;
 
 import java.awt.Rectangle;
 
-import superdisk.pdn.ArgumentOutOfRangeException;
+import superdisk.pdn.pdnplugin.ArgumentOutOfRangeException;
 
 public class SharpenChange extends PDNChange
 {

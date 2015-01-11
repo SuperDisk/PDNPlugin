@@ -1,4 +1,4 @@
-package superdisk.pdn;
+package superdisk.pdn.pdnplugin;
 
 @SuppressWarnings("serial")
 public class ArgumentOutOfRangeException extends RuntimeException

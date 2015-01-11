@@ -14,6 +14,7 @@ What's done
 * Mandelbrot Fractal
 * Motion Blur
 * Zoom Blur
+* Radial Blur
 
 What needs to be done
 =====================

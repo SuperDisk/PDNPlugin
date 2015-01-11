@@ -2,7 +2,7 @@ package superdisk.pdn.pdnplugin.changes;
 
 import java.awt.Rectangle;
 
-import superdisk.pdn.ArgumentOutOfRangeException;
+import superdisk.pdn.pdnplugin.ArgumentOutOfRangeException;
 import superdisk.pdn.pdnplugin.Utility;
 import heroesgrave.spade.image.RawImage;
 import heroesgrave.spade.image.change.SingleChange;

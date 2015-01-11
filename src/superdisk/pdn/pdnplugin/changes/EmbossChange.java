@@ -1,11 +1,11 @@
 package superdisk.pdn.pdnplugin.changes;
 
 import heroesgrave.spade.image.RawImage;
-import superdisk.pdn.ArgumentOutOfRangeException;
 import heroesgrave.spade.image.change.SingleChange;
 
 import java.awt.Rectangle;
 
+import superdisk.pdn.pdnplugin.ArgumentOutOfRangeException;
 import superdisk.pdn.structs.ColorBgra;
 
 public class EmbossChange extends PDNChange
@@ -65,7 +65,7 @@ public class EmbossChange extends PDNChange
     					for (int fx = fxStart; fx < fxEnd; ++fx) {
     						double weight = weights[fy][fx];
     						ColorBgra c = ColorBgra.fromInt(src.getPixel(x - 1 + fx, y - 1 + fy));
-    						double intensity = (double)c.GetIntensityByte();
+    						double intensity = (double)c.getIntensityByte();
     						sum += weight * intensity;
     					}
     				}

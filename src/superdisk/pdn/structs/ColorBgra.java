@@ -1,6 +1,6 @@
 package superdisk.pdn.structs;
 
-import superdisk.pdn.ArgumentOutOfRangeException;
+import superdisk.pdn.pdnplugin.ArgumentOutOfRangeException;
 
 public class ColorBgra
 {
@@ -101,17 +101,17 @@ public class ColorBgra
 		return ((0.114 * (double)b) + (0.587 * (double)g) + (0.299 * (double)r)) / 255.0;
 	}
 	
-	public char GetIntensityByte()
+	public char getIntensityByte()
     {
         return (char)((7471 * b + 38470 * g + 19595 * r) >> 16);
     }
 	
-	public char GetMaxColorChannelValue()
+	public char getMaxColorChannelValue()
     {
         return (char)Math.max(this.b, Math.max(this.g, this.r));
     }
 	
-	public char GetAverageColorChannelValue()
+	public char getAverageColorChannelValue()
     {
         return (char)((this.b + this.g + this.r) / 3);
     }
