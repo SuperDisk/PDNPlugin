@@ -19,8 +19,8 @@ class TransformData
 
 public abstract class WarpChange extends PDNChange
 {
-	private double defaultRadius = 2;
-	private double defaultRadius2 = 4;
+	protected double defaultRadius = 2;
+	protected double defaultRadius2 = 4;
 
 	protected int quality;
 	protected Point center_offset;

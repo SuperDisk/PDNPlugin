@@ -58,19 +58,22 @@ public class FragmentChange extends PDNChange
 			int dstPtr = dst.getIndex(rect.x, y);
 
 			for (int x = rect.x; x <= rect.x+rect.width-1; x++) {
-				int sampleCount = 0;
-
-				for (int i = 0; i < poLength; ++i) {
-					int u = x - pointOffsetsPtr[i].x;
-					int v = y - pointOffsetsPtr[i].y;
-
-					if (u >= 0 && u < src_width && v >= 0 && v < src_height) {
-						samples[sampleCount] = ColorBgra.fromInt(src.getPixel(u, v));
-						++sampleCount;
-					}
+				if (mask == null || mask[dstPtr])
+				{
+    				int sampleCount = 0;
+    
+    				for (int i = 0; i < poLength; ++i) {
+    					int u = x - pointOffsetsPtr[i].x;
+    					int v = y - pointOffsetsPtr[i].y;
+    
+    					if (u >= 0 && u < src_width && v >= 0 && v < src_height) {
+    						samples[sampleCount] = ColorBgra.fromInt(src.getPixel(u, v));
+    						++sampleCount;
+    					}
+    				}
+    
+    				dstBuffer[dstPtr] = ColorBgra.blend(samples, sampleCount).getBgra();
 				}
-
-				dstBuffer[dstPtr] = ColorBgra.blend(samples, sampleCount).getBgra();
 				++dstPtr;
 			}
 		}
