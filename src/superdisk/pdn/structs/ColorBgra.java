@@ -4,7 +4,6 @@ import superdisk.pdn.pdnplugin.ArgumentOutOfRangeException;
 
 public class ColorBgra
 {
-
 	private char b, g, r, a;
 	
 	public static final int BlueChannel = 0;

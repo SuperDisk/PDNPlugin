@@ -1,4 +1,4 @@
-package superdisk.pdn.pdnplugin.changes;
+package superdisk.pdn.changes;
 
 import heroesgrave.spade.image.RawImage;
 
@@ -88,6 +88,7 @@ public class FragmentChange extends PDNChange
 
 		for (int i = 0; i < fragments; i++) {
 			double currentRadians = rotationRadians + (pointStep * i);
+			//TODO: Make sure that rounding is working correctly.
 			pointOffsets[i] = new Point (
 				//(int)Math.Round (distance * -Math.sin (currentRadians), MidpointRounding.AwayFromZero),
 				//(int)Math.Round (distance * -Math.cos (currentRadians), MidpointRounding.AwayFromZero));

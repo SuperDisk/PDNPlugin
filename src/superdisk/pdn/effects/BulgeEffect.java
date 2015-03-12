@@ -1,4 +1,4 @@
-package superdisk.pdn.pdnplugin.effects;
+package superdisk.pdn.effects;
 
 import heroesgrave.spade.editing.Effect;
 import heroesgrave.spade.gui.dialogs.GridEffectDialog;
@@ -13,7 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 
-import superdisk.pdn.pdnplugin.changes.BulgeChange;
+import superdisk.pdn.changes.BulgeChange;
 
 public class BulgeEffect //extends Effect
 {

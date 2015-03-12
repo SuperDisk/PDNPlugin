@@ -1,4 +1,4 @@
-package superdisk.pdn.pdnplugin.changes;
+package superdisk.pdn.changes;
 
 import heroesgrave.spade.image.RawImage;
 import heroesgrave.spade.image.change.SingleChange;
@@ -24,11 +24,10 @@ public class SharpenChange extends PDNChange
 
 		this.amount = amount;
 	}
-	
+	//TODO: IMPLEMENT IT
 	@Override
 	public void renderLine(RawImage src, RawImage dst, Rectangle rect)
 	{
-		// TODO Auto-generated method stub
 	}
 
 	@Override

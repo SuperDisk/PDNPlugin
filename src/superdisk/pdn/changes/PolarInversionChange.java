@@ -1,4 +1,4 @@
-package superdisk.pdn.pdnplugin.changes;
+package superdisk.pdn.changes;
 
 import superdisk.pdn.pdnplugin.ArgumentOutOfRangeException;
 import superdisk.pdn.pdnplugin.Utility;

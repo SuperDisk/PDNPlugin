@@ -20,19 +20,7 @@
 
 package superdisk.pdn.pdnplugin;
 
-import superdisk.pdn.pdnplugin.changes.BulgeChange;
-import superdisk.pdn.pdnplugin.changes.EmbossChange;
-import superdisk.pdn.pdnplugin.changes.FragmentChange;
-import superdisk.pdn.pdnplugin.changes.FrostedGlassChange;
-import superdisk.pdn.pdnplugin.changes.JuliaFractalChange;
-import superdisk.pdn.pdnplugin.changes.MandelbrotFractalChange;
-import superdisk.pdn.pdnplugin.changes.MotionBlurChange;
-import superdisk.pdn.pdnplugin.changes.PixelateChange;
-import superdisk.pdn.pdnplugin.changes.PolarInversionChange;
-import superdisk.pdn.pdnplugin.changes.RadialBlurChange;
-import superdisk.pdn.pdnplugin.changes.TileChange;
-import superdisk.pdn.pdnplugin.changes.TwistChange;
-import superdisk.pdn.pdnplugin.changes.ZoomBlurChange;
+import superdisk.pdn.changes.*;
 import heroesgrave.spade.editing.SimpleEffect;
 import heroesgrave.spade.plugin.Plugin;
 import heroesgrave.spade.plugin.Registrar;
@@ -41,7 +29,7 @@ public class PDNPlugin extends Plugin
 {
 	public static void main(String[] args)
 	{
-		launchSpadeWithPlugins(args, false, new PDNPlugin());
+		launchSpadeWithPlugins(args, new PDNPlugin());
 	}
 	
 	@Override
@@ -110,5 +98,7 @@ public class PDNPlugin extends Plugin
 		registrar.registerEffect(new SimpleEffect(PDNPlugin.class, "Frosted Glass", FrostedGlassChange.instance), null);
 		registrar.registerEffect(new SimpleEffect(PDNPlugin.class, "Fragment", FragmentChange.instance), null);
 		registrar.registerEffect(new SimpleEffect(PDNPlugin.class, "Polar Inversion", PolarInversionChange.instance), null);
+		registrar.registerEffect(new SimpleEffect(PDNPlugin.class, "Remove Redeye", RedEyeRemoveChange.instance), null); //TODO: Make work?
+		registrar.registerEffect(new SimpleEffect(PDNPlugin.class, "Gaussian Blur", GaussianBlurChange.instance), null); //TODO: Make work
 	}
 }

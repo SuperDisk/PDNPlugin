@@ -1,4 +1,4 @@
-package superdisk.pdn.pdnplugin.changes;
+package superdisk.pdn.changes;
 
 import heroesgrave.spade.image.RawImage;
 

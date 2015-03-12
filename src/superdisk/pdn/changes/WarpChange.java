@@ -1,4 +1,4 @@
-package superdisk.pdn.pdnplugin.changes;
+package superdisk.pdn.changes;
 
 import heroesgrave.spade.image.RawImage;
 
@@ -40,6 +40,7 @@ public abstract class WarpChange extends PDNChange
 		this.secondary_color = secondaryColor;
 	}
 
+	//TODO: use mask
 	@Override
 	public void renderLine(RawImage src, RawImage dst, Rectangle rect)
 	{

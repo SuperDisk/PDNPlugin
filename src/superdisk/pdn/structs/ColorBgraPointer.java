@@ -9,9 +9,16 @@ public class ColorBgraPointer extends ColorBgra
 	
 	public ColorBgraPointer(RawImage img, int x, int y)
 	{
-		setBgra(img.getPixel(x, y));
 		index = img.getIndex(x, y);
 		buffer = img.borrowBuffer();
+		setBgra(img.getPixel(x, y));
+	}
+	
+	public ColorBgraPointer(RawImage img, int index)
+	{
+		this.index = index;
+		buffer = img.borrowBuffer();
+		setBgra(buffer[index]);
 	}
 	
 	@Override
@@ -25,5 +32,15 @@ public class ColorBgraPointer extends ColorBgra
 	{
 		super.setBgra(buffer[index]);
 		this.index = index;
+	}
+	
+	public void increment()
+	{
+		setIndex(index + 1);
+	}
+	
+	public void decrement()
+	{
+		setIndex(index - 1);
 	}
 }
